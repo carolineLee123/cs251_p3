@@ -4,9 +4,9 @@
  * <p>
  * TODO: Complete implementation of Tuple.Java
  *
- * @author Shivam Bairoloya, TODO: add your name here
- * @username sbairoli, TODO: add your username here
- * @sources -, TODO: add your sources here
+ * @author Shivam Bairoloya, Caroline Lee
+ * @username sbairoli, lee3629
+ * @sources -,https://stackoverflow.com/questions/3661413/how-to-cast-an-object-to-an-int
  */
 
 public class Tuple<Item extends Comparable<Item>> {
@@ -63,6 +63,59 @@ public class Tuple<Item extends Comparable<Item>> {
 
     public int compareTo(Tuple<Item> toCompare) {
         //TODO: Implement compareTo
+        int smallestLen, myLen, compLen;
+        int i;
+        int mvar, cvar;
+
+        /**get item arrays**/
+        Item[] myArray = this.getItems();
+        Item[] compArray = toCompare.getItems();
+
+        /**compare arrays**/
+        //get array lens
+        myLen = 0;
+        compLen = 0;
+        if (myArray != null)
+            myLen = myArray.length;
+        if (compArray != null)
+            compLen = compArray.length;
+        smallestLen = Math.min(myLen, compLen);
+        //dont try to traverse nulls
+        if (smallestLen == 0)
+        {
+            if (myLen == 0 && compLen == 0)
+                return 0; //both empty
+            else if (myLen == 0)
+                return 1; //only my is empty
+            else
+                return -1; //only comp is empty
+        }
+        //if len same check for same 0
+
+        //for loop comp
+        mvar = 0;
+        cvar = 0;
+        for (i = 0; i < smallestLen; i++)
+        {
+            //look at elements
+            mvar = Integer.valueOf(myArray[i].toString());
+            cvar = Integer.valueOf(compArray[i].toString());
+
+            //compare elements
+            if (mvar != cvar)
+            {
+                if (mvar > cvar)
+                    return 1; //
+                return -1;
+            }
+        }
+
+        if (mvar == cvar)
+            return 0; //same array
+        else if (myLen > compLen)
+            return 1; //mylen longer than complen
+
+        return -1; //complen longer than mylen
     }
 
     /**

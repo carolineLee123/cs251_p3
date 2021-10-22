@@ -7,9 +7,9 @@ import java.util.List;
  * <p>
  * TODO: Complete implementation of AVL.Java
  *
- * @author Shivam Bairoloya, TODO: add your name here
- * @username sbairoli, TODO: add your username here
- * @sources -, TODO: add your sources here
+ * @author Shivam Bairoloya, Caroline Lee
+ * @username sbairoli, lee3629
+ * @sources -,
  */
 public class AVL {
 
@@ -22,6 +22,7 @@ public class AVL {
      */
     public Node insert(Node node, Tuple tuple) {
         //TODO: Implement insert
+        return null;
     }
 
     /**
