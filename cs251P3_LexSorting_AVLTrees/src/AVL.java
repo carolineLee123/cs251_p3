@@ -20,8 +20,8 @@ public class AVL {
      * @param tuple The data to be inserted
      * @return root of the tree
      */
-    public Node insert(Node node, Tuple tuple) {
-        //TODO: Implement insert
+    public Node insert(Node node, Tuple tuple)
+    {
         int comp;
         int balance;
 
@@ -36,13 +36,11 @@ public class AVL {
             node.left = insert(node.left, tuple); //less than
         else if (comp < 0)
             node.right = insert(node.right, tuple); //greater than
-        else if (comp == 0)// delete duplicates?
+        else if (comp == 0)// delete duplicates? equal to
             return node;
 
-        /**change height of node**/
-        node.height = 1 + Math.max(height(node.left), height(node.right));
-
         /**check balance of tree**/
+        updateHeight(node); //check height
         balance = balanceFactor(node); //get balance
         //left rotate
         if (balance > 1 && node.left.data.compareTo(tuple) > 0)
@@ -53,13 +51,15 @@ public class AVL {
             return rightRotate(node);
 
         // left-right
-        if (balance < -1 && node.right.data.compareTo(tuple) > 0) {
+        if (balance < -1 && node.right.data.compareTo(tuple) > 0)
+        {
             node.right = leftRotate(node.right);
             return rightRotate(node);
         }
 
         // right-left
-        if (balance > 1 &&node.left.data.compareTo(tuple) < 0) {
+        if (balance > 1 &&node.left.data.compareTo(tuple) < 0)
+        {
             node.left = rightRotate(node.left);
             return leftRotate(node);
         }
@@ -67,36 +67,54 @@ public class AVL {
         return node;
     }
 
-    Node rightRotate(Node x) {
-        Node y = x.right;
-        Node T2 = y.left;
+    /**
+     * rotate with parent node x's left side with further down the branch
+     * @param x node moved
+     * @return y node swapped
+     */
+    Node leftRotate(Node x)
+    {
+        //swap nodes
+        Node y = x.left;
+        Node temp = y.right;
+        y.right = x;
+        x.left = temp;
 
-        // Perform rotation
-        y.left = x;
-        x.right = T2;
+        //update heights
+        updateHeight(x);
+        updateHeight(y);
 
-        //  Update heights
-        x.height = Math.max(height(x.left), height(x.right)) + 1;
-        y.height = Math.max(height(y.left), height(y.right)) + 1;
-
-        // Return new root
         return y;
     }
 
-    Node leftRotate(Node y) {
-        Node x = y.left;
-        Node T2 = x.right;
 
-        // Perform rotation
-        x.right = y;
-        y.left = T2;
+    /**
+     * rotate with parent node x's right side with further down the branch
+     * @param x node moved
+     * @return y node swapped
+     */
+    Node rightRotate(Node x)
+    {
+        //swap nodes
+        Node y = x.right;
+        Node temp = y.left;
+        y.left = x;
+        x.right = temp;
 
-        // Update heights
-        y.height = Math.max(height(y.left), height(y.right)) + 1;
-        x.height = Math.max(height(x.left), height(x.right)) + 1;
+        //update heights
+        updateHeight(x);
+        updateHeight(y);
 
-        // Return new root
-        return x;
+        return y;
+    }
+
+    /**
+     * update variable node height to keep tree balanced
+     * @param node the Node
+     */
+    private void updateHeight(Node node)
+    {
+        node.height = Math.max(height(node.left), height(node.right)) + 1;
     }
 
     /**
