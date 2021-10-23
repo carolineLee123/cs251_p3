@@ -41,19 +41,19 @@ public class TestTuple {
     }
 
     private static boolean test1() {
-        System.out.println("TEST 1");
+        //System.out.println("TEST 1");
 
         return runTest(1000);
     }
 
     private static boolean test2() {
-        System.out.println("TEST 2");
+        //System.out.println("TEST 2");
 
         return runTest(10000);
     }
 
     private static boolean test3() {
-        System.out.println("TEST 3");
+        //System.out.println("TEST 3");
 
         Integer[] arr1 = new Integer[0];
         Integer[] arr2 = new Integer[0];
@@ -71,7 +71,7 @@ public class TestTuple {
     }
 
     private static boolean test4() {
-        System.out.println("TEST 4");
+       // System.out.println("TEST 4");
 
         Random random = new Random();
         boolean bool = true;
