@@ -5,7 +5,7 @@
  *
  * @author Shivam Bairoloya, Caroline Lee
  * @username sbairoli, lee3629
- * @sources -,https://stackoverflow.com/questions/3661413/how-to-cast-an-object-to-an-int
+ * @sources - https://www.javatpoint.com/java-string-compareto
  */
 
 public class Tuple<Item extends Comparable<Item>> {
