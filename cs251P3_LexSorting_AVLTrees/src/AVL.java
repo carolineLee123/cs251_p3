@@ -5,11 +5,10 @@ import java.util.List;
  * CS 251: Data Structures and Algorithms
  * Project 3: Part 2
  * <p>
- * TODO: Complete implementation of AVL.Java
  *
  * @author Shivam Bairoloya, Caroline Lee
  * @username sbairoli, lee3629
- * @sources -,
+ * @sources - https://www.youtube.com/watch?v=CdGVkgMuq_4
  */
 public class AVL {
 
