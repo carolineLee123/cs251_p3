@@ -64,26 +64,48 @@ public class Tuple<Item extends Comparable<Item>> {
     public int compareTo(Tuple<Item> toCompare) {
         //TODO: Implement compareTo
         String mystr, compstr;
-
+        int smallestLen, myLen, compLen;
+        int i;
         /**get item arrays**/
         Item[] myArray = this.getItems();
         Item[] compArray = toCompare.getItems();
 
-        //convert to strings
-        mystr = myArray.toString();
-        compstr = compArray.toString();
-        int comp = mystr.compareTo(compstr);
-        System.out.println("COMPARETO");
-        System.out.println("str1: " + mystr);
-        System.out.println("str2: " + compstr);
 
-        System.out.println("compare: " + comp+"\n\n");
 
-        if (comp > 0)
-            return -1; //s1 > s2
-        else if (comp < 0) //s1 < s2
-            return 1;
-        return 0;
+
+        smallestLen = Math.min(myArray.length, compArray.length);
+        //for loop comp
+
+        for (i = 0; i < smallestLen; i++)
+        {
+            //look at elements
+            //convert to strings
+            mystr = myArray[i].toString();
+            compstr = compArray[i].toString();
+
+            int comp = mystr.compareTo(compstr);
+/**
+            System.out.println("COMPARETO");
+            System.out.println("str1: " + mystr);
+            System.out.println("str2: " + compstr);
+
+            System.out.println("compare: " + comp+"\n\n");
+*/
+            //compare elements
+            if (comp != 0)
+            {
+                if (comp > 0)
+                    return 1;
+                return -1;
+            }
+        }
+
+        if (myArray.length == compArray.length)
+            return 0; //same array
+        else if (myArray.length > compArray.length)
+            return 1; //mylen longer than complen
+
+        return -1; //complen longer than mylen
     }
 
     /**
