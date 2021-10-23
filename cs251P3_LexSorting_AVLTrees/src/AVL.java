@@ -22,7 +22,81 @@ public class AVL {
      */
     public Node insert(Node node, Tuple tuple) {
         //TODO: Implement insert
-        return null;
+        int comp;
+        int balance;
+
+        /**left or right of node**/
+        //check if node exists
+        if (node == null)
+            return (new Node(tuple));
+
+        //recursively insert
+        comp = node.data.compareTo(tuple);
+        if (comp > 0)
+            node.left = insert(node.left, tuple); //less than
+        else if (comp < 0)
+            node.right = insert(node.right, tuple); //greater than
+        else if (comp == 0)// delete duplicates?
+            return node;
+
+        /**change height of node**/
+        node.height = 1 + Math.max(height(node.left), height(node.right));
+
+        /**check balance of tree**/
+        balance = balanceFactor(node); //get balance
+        //left rotate
+        if (balance > 1 && node.left.data.compareTo(tuple) > 0)
+            return leftRotate(node);
+
+        // right rotate
+        if (balance < -1 && node.right.data.compareTo(tuple) < 0)
+            return rightRotate(node);
+
+        // left-right
+        if (balance < -1 && node.right.data.compareTo(tuple) > 0) {
+            node.right = leftRotate(node.right);
+            return rightRotate(node);
+        }
+
+        // right-left
+        if (balance > 1 &&node.left.data.compareTo(tuple) < 0) {
+            node.left = rightRotate(node.left);
+            return leftRotate(node);
+        }
+
+        return node;
+    }
+
+    Node rightRotate(Node x) {
+        Node y = x.right;
+        Node T2 = y.left;
+
+        // Perform rotation
+        y.left = x;
+        x.right = T2;
+
+        //  Update heights
+        x.height = Math.max(height(x.left), height(x.right)) + 1;
+        y.height = Math.max(height(y.left), height(y.right)) + 1;
+
+        // Return new root
+        return y;
+    }
+
+    Node leftRotate(Node y) {
+        Node x = y.left;
+        Node T2 = x.right;
+
+        // Perform rotation
+        x.right = y;
+        y.left = T2;
+
+        // Update heights
+        y.height = Math.max(height(y.left), height(y.right)) + 1;
+        x.height = Math.max(height(x.left), height(x.right)) + 1;
+
+        // Return new root
+        return x;
     }
 
     /**

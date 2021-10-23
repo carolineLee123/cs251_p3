@@ -2,7 +2,6 @@
  * CS 251: Data Structures and Algorithms
  * Project 3: Part 1
  * <p>
- * TODO: Complete implementation of Tuple.Java
  *
  * @author Shivam Bairoloya, Caroline Lee
  * @username sbairoli, lee3629
