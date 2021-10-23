@@ -63,50 +63,48 @@ public class Tuple<Item extends Comparable<Item>> {
 
     public int compareTo(Tuple<Item> toCompare) {
         //TODO: Implement compareTo
+        //TODO: Implement compareTo
+        String mystr, compstr;
         int smallestLen, myLen, compLen;
         int i;
-        int mvar, cvar;
+        char mvar, cvar;
+
 
         /**get item arrays**/
         Item[] myArray = this.getItems();
         Item[] compArray = toCompare.getItems();
 
         /**compare arrays**/
-        //get array lens
-        myLen = 0;
-        compLen = 0;
-        if (myArray != null)
-            myLen = myArray.length;
-        if (compArray != null)
-            compLen = compArray.length;
-        smallestLen = Math.min(myLen, compLen);
-        //dont try to traverse nulls
-        if (smallestLen == 0)
-        {
-            if (myLen == 0 && compLen == 0)
-                return 0; //both empty
-            else if (myLen == 0)
-                return 1; //only my is empty
-            else
-                return -1; //only comp is empty
-        }
-        //if len same check for same 0
+        //dont traverse nulls
+        if (myArray == null && compArray == null)
+            return 0; // both empty
+        else if (compArray == null)
+            return -1;
+        else if (myArray == null)
+            return 1;
 
+        //convert to strings
+        mystr = myArray.toString();
+        compstr = compArray.toString();
+        myLen = mystr.length();
+        compLen = compstr.length();
+
+        smallestLen = Math.min(myLen, compLen);
         //for loop comp
         mvar = 0;
         cvar = 0;
         for (i = 0; i < smallestLen; i++)
         {
             //look at elements
-            mvar = Integer.valueOf(myArray[i].toString());
-            cvar = Integer.valueOf(compArray[i].toString());
+            mvar = mystr.charAt(i);
+            cvar = compstr.charAt(i);
 
             //compare elements
             if (mvar != cvar)
             {
-                if (mvar > cvar)
-                    return 1; //
-                return -1;
+                if (cvar > mvar)
+                    return -1;
+                return 1;
             }
         }
 

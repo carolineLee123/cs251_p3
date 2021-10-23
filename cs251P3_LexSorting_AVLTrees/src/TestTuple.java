@@ -41,14 +41,20 @@ public class TestTuple {
     }
 
     private static boolean test1() {
+        System.out.println("TEST 1");
+
         return runTest(1000);
     }
 
     private static boolean test2() {
+        System.out.println("TEST 2");
+
         return runTest(10000);
     }
 
     private static boolean test3() {
+        System.out.println("TEST 3");
+
         Integer[] arr1 = new Integer[0];
         Integer[] arr2 = new Integer[0];
         Tuple tuple1 = new Tuple(arr1);
@@ -65,6 +71,8 @@ public class TestTuple {
     }
 
     private static boolean test4() {
+        System.out.println("TEST 4");
+
         Random random = new Random();
         boolean bool = true;
         for (int i = 0; i < 1000 && bool; i++) {
@@ -147,6 +155,8 @@ public class TestTuple {
         } else {
             System.out.printf("Test failed\ntype: String\nstring1: %s\nstring2: %s", str1, str2);
             System.out.println();
+            System.out.println("\nexpected: " +strResult + " actual:" + tupleResult );
+
             return false;
         }
     }
